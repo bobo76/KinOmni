@@ -1,0 +1,17 @@
+<mat-form-field class="example-full-width">
+  <input type="text" placeholder="Select a domain" aria-label="Number" matInput 
+      [formControl]="myControl" 
+      [matAutocomplete]="auto">
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+  (optionSelected)="valueChanged($event)">
+    <mat-option *ngFor="let option of filteredOptions$ | async"
+    [value]="option.domName">
+      {{option.domName}}({{option.domNo}})
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<div *ngIf="selectedDomain" class="example-full-width">
+    <app-domain-detail [selectedDomain]="selectedDomain">
+    </app-domain-detail>
+</div>

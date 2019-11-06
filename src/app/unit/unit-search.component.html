@@ -1,0 +1,37 @@
+<form class="search-field">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Select a unit" aria-label="Number" matInput 
+      [formControl]="myControl" 
+      [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+      (optionSelected)="valueChanged($event)">
+      <mat-option *ngFor="let option of filteredOptions$ | async"
+      [value]="option.machineName">
+        {{option.machineName}}({{option.unitId}}) - {{option.description}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+<!-- 
+<div class="example-button-row">
+  <button mat-button (click)="onClick()">
+    Try me
+  </button>
+</div> -->
+<!-- <ul class="example-full-width" *ngIf="(unitList$ | async)?.length">
+  <li *ngFor="let unit of filteredOptions$ | async">
+      {{ unit.unitId }} - {{ unit.machineName }}
+  </li>
+</ul> -->
+
+<div *ngIf="selectedUnit" class="example-full-width">
+  <div class= "button-top">
+    <button mat-flat-button (click)="onManageDomainClick()" color="primary">Manage domain for this unit</button>
+  </div>
+  <div>
+    <app-unit-detail *ngIf="!showUnitDomain" [selectedUnit]="selectedUnit"
+      (saveUnitEvent)="onSaveClick($event)"
+      (undoEvent)="onUndoClick()"></app-unit-detail>
+    <app-unit-domain *ngIf="showUnitDomain" [unitId]="selectedUnit.uinNo"></app-unit-domain>
+  </div>
+</div>

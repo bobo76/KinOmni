@@ -1,0 +1,77 @@
+<!-- <mat-form-field class="fields-large">
+    <input matInput placeholder="Name" [(ngModel)]="selectedDomain.domName">
+</mat-form-field> -->
+<h2>Domain</h2>
+<mat-form-field class="fields">
+    <input matInput placeholder="Ramq Machine" [(ngModel)]="selectedDomain.ramqMachine">
+</mat-form-field>
+<mat-form-field class="fields">
+    <input matInput placeholder="Ramq Psw" [(ngModel)]="selectedDomain.ramqPsw">
+</mat-form-field>
+<br>
+<mat-form-field class="fields">
+    <input matInput placeholder="ramq NoGmf" [(ngModel)]="selectedDomain.ramqNoGmf">
+</mat-form-field>
+<mat-form-field class="fields">
+    <input matInput placeholder="ramq PointService" [(ngModel)]="selectedDomain.ramqPointService">
+</mat-form-field>
+
+<div>
+    <mat-checkbox class="fields" 
+    color="primary"
+    [(ngModel)]="selectedDomain.ramqSync">ramq Sync</mat-checkbox>
+</div>
+<div>
+    <mat-checkbox class="fields" 
+    color="primary"
+    [(ngModel)]="selectedDomain.immActivated">imm Activated(e renouvellement ?)</mat-checkbox>
+</div>
+<div>
+    <mat-checkbox class="fields" 
+    color="primary"
+    [(ngModel)]="selectedDomain.optionSyra">Syra</mat-checkbox>
+</div>
+<div>
+    <mat-checkbox class="fields" 
+    color="primary"
+    [(ngModel)]="selectedDomain.optMessageLog">optMessageLog(Labos electr. ?)</mat-checkbox>
+</div>
+<div>
+    <mat-checkbox class="fields" 
+    color="primary"
+    [(ngModel)]="selectedDomain.optSmartBarCode">Codes barre</mat-checkbox>
+</div>
+<div>
+    <mat-checkbox class="fields" 
+    color="primary"
+    [(ngModel)]="selectedDomain.optionShowMobileEmbedded">Show Mobile Embedded</mat-checkbox>
+</div>
+<h2>Domain Group</h2>
+
+<div class="button-bot">
+    <button mat-flat-button (click)="saveUnit()" color="primary">Save</button>
+    <button mat-flat-button (click)="undoChanges()">Undo</button>
+</div>
+
+<div>
+    Médecin
+    <mat-form-field class="fields-small">
+        <input matInput placeholder="Réguler" [(ngModel)]="dataValue" 
+        type="number" min="0" max="200" >
+    </mat-form-field>
+    <mat-form-field class="fields-small">
+        <input matInput placeholder="Etp" [(ngModel)]="dataValue" 
+        type="number" min="0" max="200" >
+    </mat-form-field>
+</div>
+<div>
+    <span class="width:100px">Secrétaire</span>
+    <mat-form-field class="fields-small">
+        <input matInput placeholder="Réguler" [(ngModel)]="dataValue" 
+        type="number" min="0" max="200" >
+    </mat-form-field>
+    <mat-form-field class="fields-small">
+        <input matInput placeholder="Etp" [(ngModel)]="dataValue" 
+        type="number" min="0" max="200" >
+    </mat-form-field>
+</div>

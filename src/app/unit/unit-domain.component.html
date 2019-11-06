@@ -1,0 +1,9 @@
+<mat-selection-list dense color="primary">
+    <mat-list-option *ngFor="let domain of unitDomain$ | async">
+        {{domain.domNo}} - {{domain.domainName}} 
+    </mat-list-option>
+</mat-selection-list>
+<div class="button-bot">
+    <button mat-flat-button (click)="saveUnit()" color="primary">Save</button>
+    <button mat-flat-button (click)="undoChanges()">Undo</button>
+</div>

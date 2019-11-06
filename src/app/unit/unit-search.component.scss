@@ -1,0 +1,43 @@
+// .example-container {
+//     /*width: 96%;*/
+//     height: 250px;
+//     overflow: auto;
+//   }
+  
+table {
+  width: 100%;
+}
+
+.fields {
+  padding: 0px 3px 0px 3px;
+  width: 32%;
+  min-width: 125px;
+}
+.fields-small {
+  padding: 0px 3px 0px 3px;
+  min-width: 60px;
+  width: 10%;
+}
+.fields-large {
+  padding: 0px 3px 0px 3px;
+  width: 60%;
+}
+// .example-form {
+//   min-width: 150px;
+//   max-width: 500px;
+//   width: 100%;
+// }
+
+
+.button-top {
+  margin: 5px 3px 15px 3px;
+}
+.example-full-width {
+  width: 96%;
+  padding: 10px;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}

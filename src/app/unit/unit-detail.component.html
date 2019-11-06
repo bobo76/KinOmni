@@ -1,0 +1,57 @@
+<div>
+    <mat-form-field class="fields-small">
+        <input matInput disabled=true placeholder="Unit id" value="{{selectedUnit.unitId}}">
+    </mat-form-field>
+    <mat-form-field class="fields-small">
+        <input matInput disabled=true placeholder="Setting No" value="{{selectedUnit.settingNo}}">
+    </mat-form-field>
+</div>
+<mat-form-field class="fields">
+    <input matInput placeholder="Name" [(ngModel)]="selectedUnit.machineName">
+</mat-form-field>
+<mat-form-field class="fields-large">
+    <input matInput placeholder="Description" [(ngModel)]="selectedUnit.description">
+</mat-form-field>
+
+<mat-form-field class="fields">
+    <input matInput placeholder="Command" [(ngModel)]="selectedUnit.command">
+</mat-form-field>
+<div>
+    <mat-form-field class="fields-large">
+        <input matInput placeholder="OS Version Name" [(ngModel)]="selectedUnit.osVersionName">
+    </mat-form-field>
+</div>
+<mat-form-field class="fields-large">
+    <input matInput placeholder="EMail" [(ngModel)]="selectedUnit.logEmail">
+</mat-form-field>
+<div>
+    <mat-form-field class="fields">
+        <input matInput placeholder="Application Version" [(ngModel)]="selectedUnit.applicationVersion">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput placeholder="Current Application" [(ngModel)]="selectedUnit.currentApplicationVersion">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput placeholder="Current DLL" [(ngModel)]="selectedUnit.currentDLLVersion">
+    </mat-form-field>
+</div>
+<mat-form-field class="fields">
+    <input matInput placeholder="Current Data Df" [(ngModel)]="selectedUnit.currentDataVersionDf">
+</mat-form-field>
+<mat-form-field class="fields">
+    <input matInput placeholder="Current Data En" [(ngModel)]="selectedUnit.currentDataVersionEn">
+</mat-form-field>
+<mat-form-field class="fields">
+    <input matInput placeholder="Primary ULR" [(ngModel)]="selectedUnit.primaryULR">
+</mat-form-field>
+<mat-checkbox class="fields" 
+    color="primary"
+    [(ngModel)]="selectedUnit.remoteInkRecognition"
+    >Remote Ink Recognition</mat-checkbox>
+
+<div class="button-bot">
+    <button mat-flat-button (click)="saveUnit()" color="primary">Save</button>
+    <button mat-flat-button (click)="undoChanges()">Undo</button>
+</div>
+
+    
