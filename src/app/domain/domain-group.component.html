@@ -1,0 +1,29 @@
+<h6>GrpDomNo {{selectedDomain.grpDomNo}}</h6>
+
+<div>
+    Médecin
+    <mat-form-field class="fields-small">
+        <input matInput placeholder="Réguler" [(ngModel)]="dataValue" 
+        type="number" min="0" max="200" >
+    </mat-form-field>
+    <mat-form-field class="fields-small">
+        <input matInput placeholder="Etp" [(ngModel)]="dataValue" 
+        type="number" min="0" max="200" >
+    </mat-form-field>
+</div>
+<div>
+    <span class="width:100px">Secrétaire</span>
+    <mat-form-field class="fields-small">
+        <input matInput placeholder="Réguler" [(ngModel)]="dataValue" 
+        type="number" min="0" max="200" >
+    </mat-form-field>
+    <mat-form-field class="fields-small">
+        <input matInput placeholder="Etp" [(ngModel)]="dataValue" 
+        type="number" min="0" max="200" >
+    </mat-form-field>
+</div>
+
+<div class="button-bot">
+    <button mat-flat-button (click)="saveUnit()" color="primary">Save</button>
+    <button mat-flat-button (click)="undoChanges()">Undo</button>
+</div>

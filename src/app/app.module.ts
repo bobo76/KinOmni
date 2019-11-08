@@ -9,7 +9,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
+  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatTabsModule
 } from '@angular/material';
 
 import { AppComponent } from "./app.component";
@@ -24,12 +24,14 @@ import { UnitSearch } from "./unit/unit-search.component";
 import { UserSearch } from "./users/user-search.component";
 
 import { MaterialModule } from "../material-module";
-import { DataService } from "./shared/data-service.service";
+import { DataService } from "./_services/data-service.service";
 import { JwtInterceptor } from './shared/jwt.interceptor'
 import { UnitDetailComponent } from "./unit/unit-detail.component";
 import { UnitDomainComponent } from "./unit/unit-domain.component";
 import { DomainDetailComponent } from './domain/domain-detail.component';
 import { LoginComponent } from './shared/components/login.component';
+import { AlertComponent } from './shared/components/alert.component';
+import { DomainGroupComponent } from './domain/domain-group.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { LoginComponent } from './shared/components/login.component';
     UnitDomainComponent,
     DomainDetailComponent,
     LoginComponent,
+    AlertComponent,
+    DomainGroupComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,8 @@ import { LoginComponent } from './shared/components/login.component';
     MatTableModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

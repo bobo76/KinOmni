@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { DataService } from '../shared/data-service.service';
 import { UnitDto, UnitSearchDto } from "../model/model";
 import { Observable } from "rxjs";
 import { debounceTime, filter, flatMap } from "rxjs/operators";
+import { DataService } from '../_services/data-service.service';
 
 @Component({
   selector: "app-unit-search",

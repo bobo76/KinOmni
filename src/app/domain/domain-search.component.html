@@ -12,6 +12,15 @@
 </mat-form-field>
 
 <div *ngIf="selectedDomain" class="example-full-width">
-    <app-domain-detail [selectedDomain]="selectedDomain">
-    </app-domain-detail>
+    <mat-tab-group>
+        <mat-tab label="Domain">
+          <br>
+          <app-domain-detail [selectedDomain]="selectedDomain"></app-domain-detail>
+        </mat-tab>
+        <mat-tab label="Domain group">
+          <br>
+          <app-domain-group [selectedDomain]="selectedDomain"></app-domain-group>
+        </mat-tab>
+    </mat-tab-group>
+
 </div>

@@ -10,6 +10,7 @@ import { Component } from "@angular/core";
       </h1>
     </div>
     <main-menu></main-menu>
+    <alert></alert>
     <router-outlet></router-outlet>
   `,
   styles: []

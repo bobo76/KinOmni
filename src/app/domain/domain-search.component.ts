@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { DataService } from "../shared/data-service.service";
 import { DomainSearchDto, DomainDto } from "../model/model";
 import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { debounceTime, filter, flatMap } from "rxjs/operators";
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { DataService } from '../_services/data-service.service';
 
 @Component({
   selector: "app-domain-  search",
