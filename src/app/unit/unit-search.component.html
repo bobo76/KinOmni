@@ -1,28 +1,20 @@
-<form class="search-field">
+<form class="example-form" [formGroup]='usersForm'>
   <mat-form-field class="example-full-width">
-    <input type="text" placeholder="Select a unit" aria-label="Number" matInput 
-      [formControl]="myControl" 
-      [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
-      (optionSelected)="valueChanged($event)">
-      <mat-option *ngFor="let option of filteredOptions$ | async"
-      [value]="option.machineName">
-        {{option.machineName}}({{option.unitId}}) - {{option.description}}
-      </mat-option>
-    </mat-autocomplete>
+    <input matInput placeholder="Name, description or ID" [matAutocomplete]="auto" formControlName='userInput'>
   </mat-form-field>
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" 
+    [displayWith]="displayFn" (optionSelected)="valueChanged($event)">
+    <mat-option *ngIf="isLoading" >
+      <mat-spinner diameter="20"></mat-spinner>
+    </mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let option of dataSource" [value]="option">
+        <span>{{option.machineName}}({{option.unitId}})</span>
+        <small> | name : {{option.description}}</small>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
 </form>
-<!-- 
-<div class="example-button-row">
-  <button mat-button (click)="onClick()">
-    Try me
-  </button>
-</div> -->
-<!-- <ul class="example-full-width" *ngIf="(unitList$ | async)?.length">
-  <li *ngFor="let unit of filteredOptions$ | async">
-      {{ unit.unitId }} - {{ unit.machineName }}
-  </li>
-</ul> -->
 
 <div *ngIf="selectedUnit" class="example-full-width">
   <div class= "button-top">

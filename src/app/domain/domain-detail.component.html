@@ -15,6 +15,13 @@
 <mat-form-field class="fields">
     <input matInput placeholder="ramq PointService" [(ngModel)]="selectedDomain.ramqPointService">
 </mat-form-field>
+<br>
+<mat-form-field class="fields">
+    <input matInput placeholder="ramq PointService Other" [(ngModel)]="selectedDomain.ramqPointServiceOther">
+</mat-form-field>
+<mat-form-field class="fields">
+    <input matInput placeholder="factNet UserName" [(ngModel)]="selectedDomain.factNetUserName">
+</mat-form-field>
 <mat-card>
     <div>
         <mat-checkbox class="fields" 
@@ -45,6 +52,42 @@
         <mat-checkbox class="fields" 
         color="primary"
         [(ngModel)]="selectedDomain.optionShowMobileEmbedded">Show Mobile Embedded</mat-checkbox>
+    </div>
+</mat-card>
+<br>
+<mat-card>
+    <div>
+        <label>Médecin</label>
+        <mat-form-field class="fields-numeric">
+            <input matInput placeholder="Régulier" [(ngModel)]="selectedDomain.phyAccount" 
+            type="number" min="0" max="2000" >
+        </mat-form-field>
+        <mat-form-field class="fields-numeric">
+            <input matInput placeholder="Etp" [(ngModel)]="selectedDomain.phyAccountPartial" 
+            type="number" min="0" max="2000" >  <!-- TODO validate 200  -->
+        </mat-form-field>
+    </div>
+    <div>
+        <label class="width:100px">Secrétaire</label>
+        <mat-form-field class="fields-numeric">
+            <input matInput placeholder="Régulier" [(ngModel)]="selectedDomain.secAccount" 
+            type="number" min="0" max="2000" >
+        </mat-form-field>
+        <mat-form-field class="fields-numeric">
+            <input matInput placeholder="Etp" [(ngModel)]="selectedDomain.secAccountPartial" 
+            type="number" min="0" max="2000" >
+        </mat-form-field>
+    </div>
+    <div>
+        <label class="width:100px">Professionnel</label>
+        <mat-form-field class="fields-numeric">
+            <input matInput placeholder="Régulier" [(ngModel)]="selectedDomain.proAccount" 
+            type="number" min="0" max="200" >
+        </mat-form-field>
+        <mat-form-field class="fields-numeric">
+            <input matInput placeholder="Etp" [(ngModel)]="selectedDomain.proAccountPartial" 
+            type="number" min="0" max="2000" >
+        </mat-form-field>
     </div>
 </mat-card>
 

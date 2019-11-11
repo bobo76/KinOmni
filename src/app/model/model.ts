@@ -54,6 +54,8 @@ export interface DomainDto {
     ramqPsw: string;
     ramqNoGmf: string;
     ramqPointService: string;
+    ramqPointServiceOther: string;
+    factNetUserName: string;
     optionMobile: boolean;
     ramqSync: boolean;
     immActivated: boolean;
@@ -61,7 +63,20 @@ export interface DomainDto {
     optMessageLog: boolean;
     optSmartBarCode: boolean;
     optionShowMobileEmbedded: boolean;
-    isNew: boolean;
+    domainGroup: DomainGroupDto;
+    phyAccount: number;
+    proAccount: number;
+    secAccount: number;
+    phyAccountPartial: number;
+    proAccountPartial: number;
+    secAccountPartial: number;
+}
+
+export interface DomainGroupDto {
+    grpDomNo: number;
+    ramqUser: string;
+    ramqSyncDate: Date;
+    ramqSync: boolean;
 }
 
 export class User {
@@ -72,3 +87,4 @@ export class User {
     lastName: string;
     token?: string;
 }
+

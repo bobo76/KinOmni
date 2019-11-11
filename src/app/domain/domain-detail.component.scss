@@ -8,6 +8,11 @@
   min-width: 60px;
   width: 10%;
 }
+.fields-numeric {
+  padding: 0px 6px 0px 6px;
+  min-width: 70px;
+  width: 22%;
+}
 .fields-large {
   padding: 0px 3px 0px 3px;
   width: 60%;
@@ -21,4 +26,7 @@
 mat-card {
   background-color: whitesmoke;
   max-width: 450px;
+}
+label {
+  min-width: 110px;
 }

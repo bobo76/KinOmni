@@ -5,6 +5,8 @@ import { FormControl } from "@angular/forms";
 import { debounceTime, filter, flatMap } from "rxjs/operators";
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { DataService } from '../_services/data-service.service';
+import { AlertService } from '../_services/alert.service.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: "app-domain-  search",
@@ -20,7 +22,9 @@ export class DomainSearch implements OnInit {
   selectedDomain: DomainDto;
   myControl = new FormControl();
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService,
+    private alertService: AlertService
+    ) { }
 
   ngOnInit(): void {
     console.log("DomainSearch.ngOnInit");
@@ -33,7 +37,11 @@ export class DomainSearch implements OnInit {
         }),
         flatMap(value => this.data.searchDomain(value)),
       );
-      this.filteredOptions$.subscribe(result => this.dataSource = result);
+      this.filteredOptions$.subscribe(result => this.dataSource = result,
+        error => {
+          //const erMsg = error as HttpErrorResponse;
+          this.alertService.error(error);
+        });
   }
   
   valueChanged(event: MatAutocompleteSelectedEvent): void {
@@ -42,7 +50,13 @@ export class DomainSearch implements OnInit {
     const domain = this.dataSource.find(t => t.domName === machineName);
     if(domain) {
       this.selectedDomain$ = this.data.getDomain(domain.domNo);
-      this.selectedDomain$.subscribe(selected => this.selectedDomain = selected);
+      this.selectedDomain$.subscribe(
+        selected => this.selectedDomain = selected,
+        error => {
+          const erMsg = error as HttpErrorResponse;
+          this.alertService.error(erMsg.error.message);
+        }
+        );
       }
   }
 

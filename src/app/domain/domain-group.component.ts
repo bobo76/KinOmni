@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DomainDto } from '../model/model';
+import { DomainGroupDto } from '../model/model';
 
 @Component({
   selector: 'app-domain-group',
@@ -8,7 +8,7 @@ import { DomainDto } from '../model/model';
 })
 export class DomainGroupComponent implements OnInit {
   @Input()
-  selectedDomain: DomainDto;
+  selectedDomainGroup: DomainGroupDto;
   
   constructor() { }
 

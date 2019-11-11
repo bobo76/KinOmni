@@ -36,27 +36,27 @@ export class DataService {
         this.currentUserSubject.next(null);
     }
     loadDomain(): Observable<boolean> {
-        return this.http.get(`${environment.apiUrl}/api/domain`)
+        return this.http.get<DomainSearchDto[]>(`${environment.apiUrl}/api/domain`)
             .pipe(map((data: any[]) => {
                 this.domain = data;
                 return true;
             }), catchError(this.handleError));
     }
     getDomain(id: number): Observable<DomainDto> {
-        return this.http.get(`${environment.apiUrl}/api/domain/${id}`)
-            .pipe(catchError(this.handleError));
+        return this.http.get<DomainDto>(`${environment.apiUrl}/api/domain/${id}`);
+            // .pipe(catchError(this.handleError));
     }
     searchDomain(filter: string): Observable<DomainSearchDto[]> {
-        return this.http.get(`${environment.apiUrl}/api/domain?filter=${filter}`)
+        return this.http.get<DomainSearchDto[]>(`${environment.apiUrl}/api/domain?filter=${filter}`)
             .pipe(catchError(this.handleError));
     }
     searchUnit(filter: string): Observable<UnitSearchDto[]> {
-        return this.http.get(`${environment.apiUrl}/api/unit?filter=${filter}`)
-            .pipe(catchError(this.handleError));
+        return this.http.get<UnitSearchDto[]>(`${environment.apiUrl}/api/unit?filter=${filter}`);
+            // .pipe(catchError(this.handleError));
     }
     getUnit(id: number): Observable<UnitDto> {
         // const searchUnit: SearchUnit = { id };
-        return this.http.get(`${environment.apiUrl}/api/unit/${id}`)
+        return this.http.get<UnitDto>(`${environment.apiUrl}/api/unit/${id}`)
             .pipe(catchError(this.handleError));
     }
     saveUnit(unit: UnitDto): Observable<boolean> {
@@ -66,21 +66,22 @@ export class DataService {
     }
     getUnitDomainList(id: string): Observable<UnitDomain[]> {
         // const searchUnit: SearchUnit = { id };
-        return this.http.get(`${environment.apiUrl}/api/unit/${id}/domains`)
+        return this.http.get<UnitDomain[]>(`${environment.apiUrl}/api/unit/${id}/domains`)
             .pipe(catchError(this.handleError));
     }
     private handleError(error: HttpErrorResponse): Observable<any> {
+        let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
             // a client-side or network error occurred. Handle it accordingly.
-            console.error("An error occurred:", error.error.message);
+            errorMessage = "An error occurred:", error.error.message;
         }
         else {
             // the backend returned an unsuccessful response code.
             // the response body may contain clues as to what went wrong,
-            console.error(`Backend returned code ${error.status}, ` +
-                `body was: ${error.error}`);
+            errorMessage = `Backend returned code ${error.statusText}, ` + `body was: ${error.message}`;
         }
+        console.error(errorMessage);
         // return an observable with a user-facing error message
-        return throwError("Something bad happened; please try again later.");
+        return throwError(errorMessage);
     }
 }

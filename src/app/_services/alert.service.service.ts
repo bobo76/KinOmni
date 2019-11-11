@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
@@ -30,7 +31,34 @@ export class AlertService {
         this.keepAfterRouteChange = keepAfterRouteChange;
         this.subject.next({ type: 'success', text: message });
     }
-
+    httpError(error: Error | ErrorEvent | HttpErrorResponse, keepAfterRouteChange = false) {
+        let errorMessage = '';
+        if (error instanceof Error) {
+            // client-side error
+            errorMessage = `Error: ${error.message}`;
+        } else if (error instanceof ErrorEvent) {
+            errorMessage = `Error: ${error.message}`;
+        } else if (error instanceof HttpErrorResponse) {
+            // Server or connection error happened
+            if (!navigator.onLine) {
+                // Handle offline error
+                errorMessage = 'Server is offline';
+            } else if (error.status === 400) {
+                errorMessage = `The login is invalid.`;
+            } else if (error.status === 401) {
+                errorMessage = `The login is now invalid. Please redo login`;
+            } else if (error.status === 0) {
+                errorMessage = `Error status = 0, maybe the server is offline. ${error.message}`;
+            } else {
+                // Handle Http Error (error.status === 403, 404...)
+                errorMessage = `Error status : ${error.statusText}(${error.status})`;
+            }
+        }
+        console.error('It happens: ', errorMessage);
+        
+        this.keepAfterRouteChange = keepAfterRouteChange;
+        this.subject.next({ type: 'error', text: errorMessage });
+    }
     error(message: string, keepAfterRouteChange = false) {
         this.keepAfterRouteChange = keepAfterRouteChange;
         this.subject.next({ type: 'error', text: message });

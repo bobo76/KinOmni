@@ -1,28 +1,22 @@
-<h6>GrpDomNo {{selectedDomain.grpDomNo}}</h6>
+<h6>GrpDomNo : {{selectedDomainGroup.grpDomNo}}</h6>
 
-<div>
-    Médecin
-    <mat-form-field class="fields-small">
-        <input matInput placeholder="Réguler" [(ngModel)]="dataValue" 
-        type="number" min="0" max="200" >
-    </mat-form-field>
-    <mat-form-field class="fields-small">
-        <input matInput placeholder="Etp" [(ngModel)]="dataValue" 
-        type="number" min="0" max="200" >
-    </mat-form-field>
-</div>
-<div>
-    <span class="width:100px">Secrétaire</span>
-    <mat-form-field class="fields-small">
-        <input matInput placeholder="Réguler" [(ngModel)]="dataValue" 
-        type="number" min="0" max="200" >
-    </mat-form-field>
-    <mat-form-field class="fields-small">
-        <input matInput placeholder="Etp" [(ngModel)]="dataValue" 
-        type="number" min="0" max="200" >
-    </mat-form-field>
-</div>
-
+<mat-form-field class="fields">
+    <input matInput placeholder="RamqUser" [(ngModel)]="selectedDomainGroup.ramqUser">
+</mat-form-field>
+<br>
+<mat-form-field class="fields-large">
+    <input matInput placeholder="RamqSyncDate" [(ngModel)]="selectedDomainGroup.ramqSyncDate">
+</mat-form-field>
+<br>
+<!-- <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field> -->
+<mat-checkbox class="fields" 
+    color="primary"
+    [(ngModel)]="selectedDomainGroup.ramqSync">RamqSync</mat-checkbox>
+<br>
 <div class="button-bot">
     <button mat-flat-button (click)="saveUnit()" color="primary">Save</button>
     <button mat-flat-button (click)="undoChanges()">Undo</button>
