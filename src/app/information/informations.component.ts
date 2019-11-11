@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { InformationsDto } from "../model/model";
-import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-informations",

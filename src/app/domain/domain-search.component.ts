@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { DomainSearchDto, DomainDto } from "../model/model";
+import { DomainSearchDto, DomainDto, DomainGroupDto } from "../model/model";
 import { Observable } from "rxjs";
-import { FormControl } from "@angular/forms";
-import { debounceTime, filter, flatMap } from "rxjs/operators";
+import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
+import { debounceTime, filter, flatMap, tap, switchMap, finalize } from "rxjs/operators";
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { DataService } from '../_services/data-service.service';
 import { AlertService } from '../_services/alert.service.service';
@@ -16,38 +16,50 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class DomainSearch implements OnInit {
   dataSource: DomainSearchDto[] = [];
-  domain: DomainSearchDto[] = [];
-  filteredOptions$: Observable<DomainSearchDto[]>;
   selectedDomain$: Observable<DomainDto>;
   selectedDomain: DomainDto;
-  myControl = new FormControl();
+  domainsForm: FormGroup;
+  isLoading: boolean;
 
   constructor(private data: DataService,
+    private fb: FormBuilder, 
     private alertService: AlertService
     ) { }
 
   ngOnInit(): void {
-    console.log("DomainSearch.ngOnInit");
-    this.filteredOptions$ = this.myControl.valueChanges
-    .pipe(
+    this.domainsForm = this.fb.group({
+      domainInput: null
+    });
+    this.domainsForm
+      .get('domainInput')
+      .valueChanges
+      .pipe(
         debounceTime(400),
         filter(test => {
-          const rst = test && test.toLowerCase().length > 1;
-          return rst;
+          return test && test.length > 1;
         }),
-        flatMap(value => this.data.searchDomain(value)),
-      );
-      this.filteredOptions$.subscribe(result => this.dataSource = result,
+        tap(() => this.isLoading = true),
+        switchMap(value => this.data.searchDomain(value)
+          .pipe(
+            finalize(() => this.isLoading = false),
+          )
+        )
+      )
+      .subscribe(result => this.dataSource = result,
         error => {
-          //const erMsg = error as HttpErrorResponse;
-          this.alertService.error(error);
-        });
+          this.alertService.httpError(error);
+        }
+      );
   }
-  
+
+  displayFn(domain: DomainSearchDto) {
+    if (domain) { 
+      return domain.domName;
+    }
+  }
+
   valueChanged(event: MatAutocompleteSelectedEvent): void {
-    // const unitId: number = +event.option.value;
-    const machineName: string = event.option.value;
-    const domain = this.dataSource.find(t => t.domName === machineName);
+    const domain: DomainSearchDto = event.option.value;
     if(domain) {
       this.selectedDomain$ = this.data.getDomain(domain.domNo);
       this.selectedDomain$.subscribe(
@@ -56,9 +68,30 @@ export class DomainSearch implements OnInit {
           const erMsg = error as HttpErrorResponse;
           this.alertService.error(erMsg.error.message);
         }
-        );
-      }
+      );
+    }
+  }
+  onSaveDomainClick(domain: DomainDto): void {
+    this.data.saveDomain(domain)
+      .subscribe(result => {
+        console.log("Save result : " + result);
+      },
+      error => {
+        this.alertService.httpError(error);
+      });
+  }
+  onSaveDomainGroupClick(domainGroup: DomainGroupDto): void {
+    this.data.saveDomainGroup(domainGroup)
+      .subscribe(result => {
+        console.log("Save result : " + result);
+      },
+      error => {
+        this.alertService.httpError(error);
+      });
+  }
+  onUndoDomain(): void {
+    this.selectedDomain$ = this.data.getDomain(this.selectedDomain.domNo);
+    this.selectedDomain$.subscribe(selected => this.selectedDomain = selected);
   }
 
 }
-

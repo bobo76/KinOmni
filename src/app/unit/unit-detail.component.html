@@ -22,8 +22,42 @@
     </mat-form-field>
 </div>
 <mat-form-field class="fields-large">
-    <input matInput placeholder="EMail" [(ngModel)]="selectedUnit.logEmail">
+    <input matInput placeholder="Log EMail" [(ngModel)]="selectedUnit.logEmail">
 </mat-form-field>
+<br>
+<mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUnit.autoSendLog">Auto SendLog
+</mat-checkbox>
+<br>
+<mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUnit.enableApplicationUpdate">Enable Application Update
+</mat-checkbox>
+<br>
+<mat-form-field class="fields-large">
+    <mat-label>Previous wave</mat-label>
+    <mat-select [(ngModel)]="selectedUnit.previousVagueID">
+        <!-- <mat-select-trigger>
+            test here {{selectedUnit.previousVagueID ? wave.description ? wave.description (wave.vagueID): wave.vagueID : 'is null'}}
+        </mat-select-trigger> -->
+        <!-- <mat-option>
+            <mat-spinner diameter="20"></mat-spinner>
+        </mat-option> -->
+        <mat-option *ngFor="let wave of waveList$ | async" [value]="wave.vagueID">
+            {{wave.description}}<small> ({{wave.vagueID}})</small>
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field class="fields-large">
+    <mat-label>Next wave</mat-label>
+    <!-- <mat-option *ngIf="isLoading">
+        <mat-spinner diameter="20"></mat-spinner>
+    </mat-option> -->
+    <mat-select [(ngModel)]="selectedUnit.vagueID">
+        <mat-option *ngFor="let wave of waveList$ | async" [value]="wave.vagueID">
+            {{wave.description}}<small> ({{wave.vagueID}})</small>
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
 <div>
     <mat-form-field class="fields">
         <input matInput placeholder="Application Version" [(ngModel)]="selectedUnit.applicationVersion">

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { DataService } from 'src/app/_services/data-service.service';
-import { AlertService } from 'src/app/_services/alert.service.service';
+import { DataService } from 'app/_services/data-service.service';
+import { AlertService } from 'app/_services/alert.service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

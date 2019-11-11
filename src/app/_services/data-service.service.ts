@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError, BehaviorSubject } from "rxjs";
 import { map, catchError } from "rxjs/operators";
-import { UnitDto, DomainSearchDto, UnitDomain, UnitSearchDto, DomainDto, User } from "../model/model";
-import { environment } from 'src/environments/environment';
+import { UnitDto, DomainSearchDto, UnitDomain, UnitSearchDto, DomainDto, User, unitTableDto, DomainGroupDto } from "../model/model";
+import { environment } from 'environments/environment';
 @Injectable({
     providedIn: "root"
 })
@@ -44,11 +44,16 @@ export class DataService {
     }
     getDomain(id: number): Observable<DomainDto> {
         return this.http.get<DomainDto>(`${environment.apiUrl}/api/domain/${id}`);
-            // .pipe(catchError(this.handleError));
     }
     searchDomain(filter: string): Observable<DomainSearchDto[]> {
         return this.http.get<DomainSearchDto[]>(`${environment.apiUrl}/api/domain?filter=${filter}`)
             .pipe(catchError(this.handleError));
+    }
+    saveDomain(domain: DomainDto): Observable<boolean> {
+        return this.http.post<boolean>(`${environment.apiUrl}/api/domain`, domain);
+    }
+    saveDomainGroup(domainGroup: DomainGroupDto): Observable<boolean> {
+        return this.http.post<boolean>(`${environment.apiUrl}/api/domainGroup`, domainGroup);
     }
     searchUnit(filter: string): Observable<UnitSearchDto[]> {
         return this.http.get<UnitSearchDto[]>(`${environment.apiUrl}/api/unit?filter=${filter}`);
@@ -61,13 +66,17 @@ export class DataService {
     }
     saveUnit(unit: UnitDto): Observable<boolean> {
         // const searchUnit: SearchUnit = { id };
-        return this.http.post(`${environment.apiUrl}/api/unit`, unit)
+        return this.http.post<boolean>(`${environment.apiUrl}/api/unit`, unit)
             .pipe(map(_ => true), catchError(this.handleError));
     }
     getUnitDomainList(id: string): Observable<UnitDomain[]> {
         // const searchUnit: SearchUnit = { id };
         return this.http.get<UnitDomain[]>(`${environment.apiUrl}/api/unit/${id}/domains`)
             .pipe(catchError(this.handleError));
+    }
+    getWaveList(): Observable<unitTableDto[]> {
+        console.log("getWaveList");
+        return this.http.get<unitTableDto[]>(`${environment.apiUrl}/api/system?systemname=unittable`);
     }
     private handleError(error: HttpErrorResponse): Observable<any> {
         let errorMessage = '';

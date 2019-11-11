@@ -1,6 +1,6 @@
-<form class="example-form" [formGroup]='usersForm'>
+<form class="example-form" [formGroup]='unitsForm'>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Name, description or ID" [matAutocomplete]="auto" formControlName='userInput'>
+    <input matInput placeholder="Name, description or ID" [matAutocomplete]="auto" formControlName='unitInput'>
   </mat-form-field>
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" 
     [displayWith]="displayFn" (optionSelected)="valueChanged($event)">

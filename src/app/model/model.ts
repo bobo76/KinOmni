@@ -12,23 +12,23 @@ export class UnitSearchDto {
 export class UnitDto {
     unitId: number;
     uinNo: string;
-    machineName?: any;
-    description?: any;
-    osVersionName?: any;
+    machineName?: string;
+    description?: string;
+    osVersionName?: string;
     settingNo: number;
-    command?: any;
-    logEmail?: any;
+    command?: string;
+    logEmail?: string;
     autoSendLog: boolean;
     enableApplicationUpdate: boolean;
-    applicationVersion?: any;
+    applicationVersion?: string;
     currentApplicationVersion: number;
     currentDLLVersion: number;
     currentDataVersionDf: number;
     currentDataVersionEn: number;
-    primaryULR?: any;
-    secondaryULR?: any;
-    vagueID?: any;
-    previousVagueID?: any;
+    primaryULR?: string;
+    secondaryULR?: string;
+    vagueID?: string;
+    previousVagueID?: string;
     deviceIDChangeCount: number;
     remoteInkRecognition: boolean;
     isNew: boolean;
@@ -88,3 +88,9 @@ export class User {
     token?: string;
 }
 
+export interface unitTableDto {
+    id: number;
+    deploymentDate: Date;
+    vagueID: string;
+    description: string;
+}

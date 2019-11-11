@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { UnitDto, UnitSearchDto } from "../model/model";
 import { Observable } from "rxjs";
-import { debounceTime, filter, flatMap, tap, switchMap, finalize } from "rxjs/operators";
+import { debounceTime, filter, tap, switchMap, finalize, flatMap } from "rxjs/operators";
 import { DataService } from '../_services/data-service.service';
 import { AlertService } from '../_services/alert.service.service';
 
@@ -13,11 +13,10 @@ import { AlertService } from '../_services/alert.service.service';
   styleUrls: ["./unit-search.component.scss"]
 })
 export class UnitSearch implements OnInit {
-  // displayedColumns: string[] = ["unitId", "machineName", "description"];
   dataSource: UnitSearchDto[] = [];
   selectedUnit$: Observable<UnitDto>;
   selectedUnit: UnitDto;
-  usersForm: FormGroup;
+  unitsForm: FormGroup;
   showUnitDomain: boolean = false;
   isLoading: boolean;
 
@@ -26,14 +25,15 @@ export class UnitSearch implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit():void {
-    this.usersForm = this.fb.group({
-      userInput: null
+    this.unitsForm = this.fb.group({
+      unitInput: null
     });
-    this.usersForm
-      .get('userInput')
+
+    this.unitsForm
+      .get('unitInput')
       .valueChanges
       .pipe(
-        debounceTime(300),
+        debounceTime(400),
         filter(test => {
           return test && test.length > 1;
         }),
@@ -51,7 +51,9 @@ export class UnitSearch implements OnInit {
   }
 
   displayFn(unit: UnitSearchDto) {
-    if (unit) { return unit.description; }
+    if (unit) {
+      return unit.description;
+    }
   }
 
   valueChanged(event: MatAutocompleteSelectedEvent): void {
@@ -73,7 +75,6 @@ export class UnitSearch implements OnInit {
     this.selectedUnit$ = this.data.getUnit(this.selectedUnit.unitId);
     this.selectedUnit$.subscribe(selected => this.selectedUnit = selected);
   }
-
 
   onManageDomainClick(): void {
     this.showUnitDomain = !this.showUnitDomain;

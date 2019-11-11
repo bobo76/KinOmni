@@ -7,7 +7,8 @@ import { MaterialModule } from "../material-module";
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatTabsModule,
-  MatCheckboxModule
+  MatCheckboxModule, MatSelectModule, MatFormFieldModule, MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 import { AppComponent } from "./app.component";
@@ -57,6 +58,10 @@ import { AlertComponent } from './shared/components/alert.component';
     FormsModule,
     // MatDialog,
     MatCheckboxModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule,    
     MatToolbarModule,
     MatButtonModule, 

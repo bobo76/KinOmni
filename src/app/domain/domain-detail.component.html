@@ -55,6 +55,7 @@
     </div>
 </mat-card>
 <br>
+<label>Licence</label>
 <mat-card>
     <div>
         <label>Médecin</label>
@@ -68,7 +69,7 @@
         </mat-form-field>
     </div>
     <div>
-        <label class="width:100px">Secrétaire</label>
+        <label>Secrétaire</label>
         <mat-form-field class="fields-numeric">
             <input matInput placeholder="Régulier" [(ngModel)]="selectedDomain.secAccount" 
             type="number" min="0" max="2000" >
@@ -79,7 +80,7 @@
         </mat-form-field>
     </div>
     <div>
-        <label class="width:100px">Professionnel</label>
+        <label>Professionnel</label>
         <mat-form-field class="fields-numeric">
             <input matInput placeholder="Régulier" [(ngModel)]="selectedDomain.proAccount" 
             type="number" min="0" max="200" >
@@ -92,6 +93,6 @@
 </mat-card>
 
 <div class="button-bot">
-    <button mat-flat-button (click)="saveUnit()" color="primary">Save</button>
+    <button mat-flat-button (click)="saveDomain()" color="primary">Save</button>
     <button mat-flat-button (click)="undoChanges()">Undo</button>
 </div>

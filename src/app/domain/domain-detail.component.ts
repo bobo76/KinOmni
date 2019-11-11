@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DomainDto } from '../model/model';
 
 @Component({
@@ -9,10 +9,19 @@ import { DomainDto } from '../model/model';
 export class DomainDetailComponent implements OnInit {
   @Input()
   selectedDomain: DomainDto;
+  @Output()
+  saveEvent = new EventEmitter<DomainDto>();
+  @Output()
+  undoEvent = new EventEmitter<void>();
   
   constructor() { }
 
   ngOnInit() {
   }
-
+  saveDomain(): void {
+    this.saveEvent.emit(this.selectedDomain);
+  }
+  undoChanges(): void {
+    this.undoEvent.emit();
+  }
 }

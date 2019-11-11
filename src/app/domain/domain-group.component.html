@@ -8,16 +8,17 @@
     <input matInput placeholder="RamqSyncDate" [(ngModel)]="selectedDomainGroup.ramqSyncDate">
 </mat-form-field>
 <br>
-<!-- <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+<mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [value]="ramqSyncDate">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-</mat-form-field> -->
+</mat-form-field>
+<br>
 <mat-checkbox class="fields" 
     color="primary"
     [(ngModel)]="selectedDomainGroup.ramqSync">RamqSync</mat-checkbox>
 <br>
 <div class="button-bot">
-    <button mat-flat-button (click)="saveUnit()" color="primary">Save</button>
+    <button mat-flat-button (click)="saveDomainGroup()" color="primary">Save</button>
     <button mat-flat-button (click)="undoChanges()">Undo</button>
 </div>
