@@ -8,11 +8,11 @@ import { DataService } from '../_services/data-service.service';
 import { AlertService } from '../_services/alert.service.service';
 
 @Component({
-  selector: "app-unit-search",
-  templateUrl: "./unit-search.component.html",
-  styleUrls: ["./unit-search.component.scss"]
+  selector: "app-unit",
+  templateUrl: "./unit.component.html",
+  styleUrls: ["./unit.component.scss"]
 })
-export class UnitSearch implements OnInit {
+export class UnitComponent implements OnInit {
   dataSource: UnitSearchDto[] = [];
   selectedUnit$: Observable<UnitDto>;
   selectedUnit: UnitDto;
@@ -60,7 +60,10 @@ export class UnitSearch implements OnInit {
     const unitSelected: UnitSearchDto = event.option.value;
     if (unitSelected) {
       this.selectedUnit$ = this.data.getUnit(unitSelected.unitId);
-      this.selectedUnit$.subscribe(selected => this.selectedUnit = selected);
+      this.selectedUnit$.subscribe(selected => this.selectedUnit = selected,
+        error => {
+          this.alertService.httpError(error);
+        });
     }
   }
 
@@ -68,12 +71,18 @@ export class UnitSearch implements OnInit {
     this.data.saveUnit(unit)
     .subscribe(result => {
         console.log("Save result : " + result);
+      },
+      error => {
+        this.alertService.httpError(error);
       });
   }
 
   onUndoClick(): void {
     this.selectedUnit$ = this.data.getUnit(this.selectedUnit.unitId);
-    this.selectedUnit$.subscribe(selected => this.selectedUnit = selected);
+    this.selectedUnit$.subscribe(selected => this.selectedUnit = selected,
+      error => {
+        this.alertService.httpError(error);
+      });
   }
 
   onManageDomainClick(): void {

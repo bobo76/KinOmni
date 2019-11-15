@@ -1,8 +1,8 @@
 import { Activation } from "./activation/activation.component";
-import { DomainSearch } from "./domain/domain-search.component";
+import { DomainComponent } from "./domain/domain.component";
 import { Informations } from "./information/informations.component";
 import { LabsSearch } from "./labs/labs-search.component";
-import { UnitSearch } from "./unit/unit-search.component";
+import { UnitComponent } from "./unit/unit.component";
 import { UserSearch } from "./users/user-search.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -11,8 +11,8 @@ import { LoginComponent } from './shared/components/login.component';
 const routes: Routes = [
   { path: "", component: Informations },
   { path: "activation", component: Activation },
-  { path: "domain", component: DomainSearch },
-  { path: "unit", component: UnitSearch },
+  { path: "domain", component: DomainComponent },
+  { path: "unit", component: UnitComponent },
   { path: "user", component: UserSearch },
   { path: "login", component: LoginComponent },
   { path: "labs", component: LabsSearch }

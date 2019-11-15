@@ -94,3 +94,10 @@ export interface unitTableDto {
     vagueID: string;
     description: string;
 }
+
+export class ActivationDto {
+    quantity: number;
+    group: string;
+    domainList: number[];
+    vagueId: string;
+}

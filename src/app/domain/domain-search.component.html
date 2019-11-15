@@ -1,35 +1,16 @@
-<form class="example-form" [formGroup]='domainsForm'>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Name or ID" [matAutocomplete]="auto" formControlName='domainInput'>
-  </mat-form-field>
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn"
-    (optionSelected)="valueChanged($event)">
-    <mat-option *ngIf="isLoading">
-      <mat-spinner diameter="20"></mat-spinner>
-    </mat-option>
-    <ng-container *ngIf="!isLoading">
-      <mat-option *ngFor="let option of dataSource" [value]="option">
-        <span>{{option.domName}}({{option.domNo}})</span>
-      </mat-option>
-    </ng-container>
-  </mat-autocomplete>
+<form [formGroup]='domainsForm'>
+    <mat-form-field class="full" >
+        <input matInput placeholder="Domain name or ID" [matAutocomplete]="auto" formControlName='domainInput'>
+    </mat-form-field>
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn"
+        (optionSelected)="valueChanged($event)">
+        <mat-option *ngIf="isLoading">
+            <mat-spinner diameter="20"></mat-spinner>
+        </mat-option>
+        <ng-container *ngIf="!isLoading">
+            <mat-option *ngFor="let option of dataSource" [value]="option">
+                <span>{{option.domName}}({{option.domNo}})</span>
+            </mat-option>
+        </ng-container>
+    </mat-autocomplete>
 </form>
-
-
-<div *ngIf="selectedDomain" class="example-full-width">
-    <mat-tab-group>
-        <mat-tab label="Domain">
-          <br>
-          <app-domain-detail [selectedDomain]="selectedDomain"
-            (saveEvent)="onSaveDomainClick($event)"
-            (undoEvent)="onUndoDomain()"></app-domain-detail>
-        </mat-tab>
-        <mat-tab label="Domain group">
-          <br>
-          <app-domain-group [selectedDomainGroup]="selectedDomain.domainGroup"
-            (saveEvent)="onSaveDomainGroupClick($event)"
-            (undoEvent)="onUndoDomain()"></app-domain-group>
-        </mat-tab>
-    </mat-tab-group>
-</div>
-

@@ -46,8 +46,7 @@ export class DataService {
         return this.http.get<DomainDto>(`${environment.apiUrl}/api/domain/${id}`);
     }
     searchDomain(filter: string): Observable<DomainSearchDto[]> {
-        return this.http.get<DomainSearchDto[]>(`${environment.apiUrl}/api/domain?filter=${filter}`)
-            .pipe(catchError(this.handleError));
+        return this.http.get<DomainSearchDto[]>(`${environment.apiUrl}/api/domain?filter=${filter}`);
     }
     saveDomain(domain: DomainDto): Observable<boolean> {
         return this.http.post<boolean>(`${environment.apiUrl}/api/domain`, domain);
@@ -57,17 +56,13 @@ export class DataService {
     }
     searchUnit(filter: string): Observable<UnitSearchDto[]> {
         return this.http.get<UnitSearchDto[]>(`${environment.apiUrl}/api/unit?filter=${filter}`);
-            // .pipe(catchError(this.handleError));
     }
     getUnit(id: number): Observable<UnitDto> {
         // const searchUnit: SearchUnit = { id };
-        return this.http.get<UnitDto>(`${environment.apiUrl}/api/unit/${id}`)
-            .pipe(catchError(this.handleError));
+        return this.http.get<UnitDto>(`${environment.apiUrl}/api/unit/${id}`);
     }
     saveUnit(unit: UnitDto): Observable<boolean> {
-        // const searchUnit: SearchUnit = { id };
-        return this.http.post<boolean>(`${environment.apiUrl}/api/unit`, unit)
-            .pipe(map(_ => true), catchError(this.handleError));
+        return this.http.post<boolean>(`${environment.apiUrl}/api/unit`, unit);
     }
     getUnitDomainList(id: string): Observable<UnitDomain[]> {
         // const searchUnit: SearchUnit = { id };

@@ -1,1 +1,53 @@
-<p>activation works!</p>
+<div class="example-full-width">
+    <mat-form-field class="fields">
+        <input matInput placeholder="Quantity" type="number" min="0" max="100"
+            [formControl]="quantityFormControl"
+            [errorStateMatcher]="matcher"
+            [(ngModel)]="activation.quantity">
+        <mat-error *ngIf="quantityFormControl.hasError('required')">
+            Quantity is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="fields">
+        <input matInput placeholder="Group" 
+            [formControl]="grpupFormControl"
+            [errorStateMatcher]="matcher"
+            [(ngModel)]="activation.group">
+        <mat-error *ngIf="grpupFormControl.hasError('required')">
+            Group must be > 3 characters
+        </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="fields-large">
+        <mat-label>Wave</mat-label>
+        <mat-select [(ngModel)]="activation.vagueId">
+            <mat-option *ngFor="let wave of waveList$ | async" [value]="wave.vagueID">
+                {{wave.description}}<small> ({{wave.vagueID}})</small>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <app-domain-search [selectedDomain]="selectedDomain" class="fields-large"
+    (domainSelectedEvent)="onDomainSelectedEvent($event)">Domain</app-domain-search>
+    <button mat-flat-button color="primary" (click)="onAddDomain()"><i class="material-icons">add</i></button>
+    <br>
+    <br>
+    <mat-list>
+        <mat-list-item 
+            *ngFor="let domain of selectedDomainList; let i = index">
+            {{domain.domName}} <small>(K-{{domain.domNo}})</small>
+            <button mat-raised-button class="button-right" color="accent" (click)="removeDomain(i)">
+                <i class="material-icons">remove</i></button>
+        </mat-list-item>
+        <mat-list-item *ngIf="selectedDomainList.length == 0" style="color: red;">
+            <small>Add domain(s)</small>
+        </mat-list-item>
+    </mat-list>
+    <br>
+    <div >
+        <button class="button-bot" mat-raised-button (click)="doActivation()" 
+            color="primary" [disabled]="canGenerateCode()">Generate codes</button>
+        <button class="button-bot" mat-raised-button (click)="clearScreen()">Clear</button>
+    </div>
+</div>
