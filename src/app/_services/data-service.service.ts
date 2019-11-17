@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError, BehaviorSubject } from "rxjs";
 import { map, catchError } from "rxjs/operators";
-import { UnitDto, DomainSearchDto, UnitDomain, UnitSearchDto, DomainDto, User, unitTableDto, DomainGroupDto } from "../model/model";
+import { UnitDto, DomainSearchDto, UnitDomain, UnitSearchDto, DomainDto, User, unitTableDto, DomainGroupDto, ActivationParametersDto, ActivationDto } from "../model/model";
 import { environment } from 'environments/environment';
 @Injectable({
     providedIn: "root"
@@ -58,20 +58,20 @@ export class DataService {
         return this.http.get<UnitSearchDto[]>(`${environment.apiUrl}/api/unit?filter=${filter}`);
     }
     getUnit(id: number): Observable<UnitDto> {
-        // const searchUnit: SearchUnit = { id };
         return this.http.get<UnitDto>(`${environment.apiUrl}/api/unit/${id}`);
     }
     saveUnit(unit: UnitDto): Observable<boolean> {
         return this.http.post<boolean>(`${environment.apiUrl}/api/unit`, unit);
     }
     getUnitDomainList(id: string): Observable<UnitDomain[]> {
-        // const searchUnit: SearchUnit = { id };
         return this.http.get<UnitDomain[]>(`${environment.apiUrl}/api/unit/${id}/domains`)
             .pipe(catchError(this.handleError));
     }
     getWaveList(): Observable<unitTableDto[]> {
-        console.log("getWaveList");
         return this.http.get<unitTableDto[]>(`${environment.apiUrl}/api/system?systemname=unittable`);
+    }
+    generateActivationCode(activation: ActivationParametersDto): Observable<ActivationDto[]> {
+        return this.http.post<ActivationDto[]>(`${environment.apiUrl}/api/action/activation`, activation);
     }
     private handleError(error: HttpErrorResponse): Observable<any> {
         let errorMessage = '';

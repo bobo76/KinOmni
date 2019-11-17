@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivationDto, unitTableDto, DomainDto } from '@app/model';
+import { ActivationParametersDto, unitTableDto, DomainDto, ActivationDto } from '@app/model';
 import { Observable } from 'rxjs';
 import { DataService, AlertService } from '@app/_services';
 import { ErrorStateMatcher } from '@angular/material';
@@ -11,7 +11,7 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
   styleUrls: ['./activation.component.css']
 })
 export class Activation implements OnInit {
-  activation: ActivationDto;
+  activation: ActivationParametersDto;
   selectedDomain: DomainDto;
   selectedDomainList: DomainDto[] = [];
 
@@ -24,7 +24,7 @@ export class Activation implements OnInit {
   grpupFormControl = new FormControl('', [
     Validators.required,
   ]);
-
+  activationResult: ActivationDto[];
 
   matcher = new MyErrorStateMatcher();
   constructor(private data: DataService,
@@ -32,7 +32,7 @@ export class Activation implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.activation = new ActivationDto();
+    this.activation = new ActivationParametersDto();
     this.isLoading = true;
     this.waveList$ = this.data.getWaveList();
     this.waveList$.subscribe(_ => this.isLoading = false,
@@ -42,13 +42,21 @@ export class Activation implements OnInit {
     );
   }
   doActivation(): void {
-
+    this.activation.domainList = this.selectedDomainList.map(t => t.domNo);
+    this.data.generateActivationCode(this.activation)
+      .subscribe(result => {
+        this.activationResult = result;
+      },
+      error => {
+        this.alertService.httpError(error);
+      });
   }
   clearScreen(): void {
-    this.activation = new ActivationDto();
+    this.activation = new ActivationParametersDto();
     this.selectedDomainList = [];
     this.quantityFormControl.reset();
     this.grpupFormControl.reset();
+    this.activationResult = undefined;
   }
 
   onDomainSelectedEvent(domain: DomainDto): void{

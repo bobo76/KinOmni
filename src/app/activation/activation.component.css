@@ -28,6 +28,7 @@ mat-list {
   border: black 0.5px;
   border-style: solid;
   border-radius: .25rem;
+  margin: 3px 0px 9px 0px;
 }
 
 .button-right {

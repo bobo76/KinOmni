@@ -32,7 +32,6 @@
     (domainSelectedEvent)="onDomainSelectedEvent($event)">Domain</app-domain-search>
     <button mat-flat-button color="primary" (click)="onAddDomain()"><i class="material-icons">add</i></button>
     <br>
-    <br>
     <mat-list>
         <mat-list-item 
             *ngFor="let domain of selectedDomainList; let i = index">
@@ -44,10 +43,15 @@
             <small>Add domain(s)</small>
         </mat-list-item>
     </mat-list>
-    <br>
     <div >
         <button class="button-bot" mat-raised-button (click)="doActivation()" 
             color="primary" [disabled]="canGenerateCode()">Generate codes</button>
         <button class="button-bot" mat-raised-button (click)="clearScreen()">Clear</button>
     </div>
+    <mat-list *ngIf="activationResult">
+        <h5>Results</h5>
+        <mat-list-item *ngFor="let unit of activationResult">
+            code : {{unit.activationCode}} <small style="margin-left: 6px"> UnitNo : {{unit.unitNo}}</small>
+        </mat-list-item>
+    </mat-list>
 </div>

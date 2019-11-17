@@ -95,9 +95,17 @@ export interface unitTableDto {
     description: string;
 }
 
-export class ActivationDto {
+export class ActivationParametersDto {
     quantity: number;
     group: string;
     domainList: number[];
     vagueId: string;
+}
+
+export interface ActivationDto{
+    activationCode: number;
+    unitNo: string;
+    DdteCreated: Date;
+    groupName: string;
+    domainsList: string;
 }
