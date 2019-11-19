@@ -24,7 +24,7 @@ import { LabsSearch } from "./labs/labs-search.component";
 import { UnitComponent } from "./unit/unit.component";
 import { UnitDetailComponent } from "./unit/unit-detail.component";
 import { UnitDomainComponent } from "./unit/unit-domain.component";
-import { UserSearch } from "./users/user-search.component";
+import { UserComponent } from "./users/user.component";
 
 import { DataService } from "./_services/data-service.service";
 import { JwtInterceptor } from './_interceptor/jwt.interceptor'
@@ -40,7 +40,7 @@ import { DomainSearchComponent } from './domain/domain-search.component';
     DomainComponent,
     UnitComponent,
     LabsSearch,
-    UserSearch,
+    UserComponent,
     Activation,
     Informations,
     UnitDetailComponent,

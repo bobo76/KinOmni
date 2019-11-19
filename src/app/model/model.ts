@@ -109,3 +109,14 @@ export interface ActivationDto{
     groupName: string;
     domainsList: string;
 }
+
+export interface UserSearchDto{
+    useNo: string;
+    groupNo: number;
+    firstName: string;
+    lastName: string;
+    login: string;
+    creationDate: Date;
+    mailName: string;
+    licence: string;
+}

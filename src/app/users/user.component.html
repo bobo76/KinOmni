@@ -1,0 +1,18 @@
+<form class="example-form" [formGroup]='userForm'>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Name, login, mail or licence" [matAutocomplete]="auto" formControlName='userInput'>
+    </mat-form-field>
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn"
+        (optionSelected)="valueChanged($event)">
+        <mat-option *ngIf="isLoading">
+            <mat-spinner diameter="20"></mat-spinner>
+        </mat-option>
+        <ng-container *ngIf="!isLoading">
+            <mat-option *ngFor="let option of dataSource" [value]="option">
+                <span>{{option.firstName}}</span><span>{{option.lastName}}</span>
+                <span>{{option.login}}</span><span>{{option.mailName}}</span>
+                <span>{{option.licence}}</span>
+            </mat-option>
+        </ng-container>
+    </mat-autocomplete>
+</form>

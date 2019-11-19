@@ -3,7 +3,7 @@ import { DomainComponent } from "./domain/domain.component";
 import { Informations } from "./information/informations.component";
 import { LabsSearch } from "./labs/labs-search.component";
 import { UnitComponent } from "./unit/unit.component";
-import { UserSearch } from "./users/user-search.component";
+import { UserComponent } from "./users/user.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from './shared/components/login.component';
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: "activation", component: Activation },
   { path: "domain", component: DomainComponent },
   { path: "unit", component: UnitComponent },
-  { path: "user", component: UserSearch },
+  { path: "user", component: UserComponent },
   { path: "login", component: LoginComponent },
   { path: "labs", component: LabsSearch }
 ];
