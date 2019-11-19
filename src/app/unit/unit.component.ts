@@ -17,7 +17,6 @@ export class UnitComponent implements OnInit {
   selectedUnit$: Observable<UnitDto>;
   selectedUnit: UnitDto;
   unitsForm: FormGroup;
-  showUnitDomain: boolean = false;
   isLoading: boolean;
 
   constructor(private data: DataService,
@@ -83,9 +82,5 @@ export class UnitComponent implements OnInit {
       error => {
         this.alertService.httpError(error);
       });
-  }
-
-  onManageDomainClick(): void {
-    this.showUnitDomain = !this.showUnitDomain;
   }
 }

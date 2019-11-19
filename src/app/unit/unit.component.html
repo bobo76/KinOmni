@@ -17,13 +17,18 @@
 </form>
 
 <div *ngIf="selectedUnit" class="example-full-width">
-  <div class= "button-top">
-    <button mat-flat-button (click)="onManageDomainClick()" color="primary">Manage domain for this unit</button>
-  </div>
-  <div>
-    <app-unit-detail *ngIf="!showUnitDomain" [selectedUnit]="selectedUnit"
-      (saveUnitEvent)="onSaveClick($event)"
-      (undoEvent)="onUndoClick()"></app-unit-detail>
-    <app-unit-domain *ngIf="showUnitDomain" [unitId]="selectedUnit.uinNo"></app-unit-domain>
-  </div>
+  <mat-tab-group>
+    <mat-tab label="Unit info">
+      <br>
+      <app-unit-detail
+        [selectedUnit]="selectedUnit"
+        (saveUnitEvent)="onSaveClick($event)"
+        (undoEvent)="onUndoClick()"></app-unit-detail>
+      </mat-tab>
+    <mat-tab label="Domain list">
+      <br>
+      <app-unit-domain
+      [unitId]="selectedUnit.uinNo"></app-unit-domain>
+    </mat-tab>
+  </mat-tab-group>
 </div>
