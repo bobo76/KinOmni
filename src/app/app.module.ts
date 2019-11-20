@@ -8,7 +8,7 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatTabsModule,
   MatCheckboxModule, MatSelectModule, MatFormFieldModule, MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule, MatExpansionModule
 } from '@angular/material';
 
 import { AppComponent } from "./app.component";
@@ -64,6 +64,7 @@ import { DomainSearchComponent } from './domain/domain-search.component';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatExpansionModule,
     ReactiveFormsModule,    
     MatToolbarModule,
     MatButtonModule, 

@@ -47,14 +47,16 @@ export class AlertService {
                 errorMessage = `The login is invalid.`;
             } else if (error.status === 401) {
                 errorMessage = `The login is now invalid. Please redo login`;
+            } else if (error.status === 404) {
+                errorMessage = `No result found`;
             } else if (error.status === 0) {
                 errorMessage = `Error status = 0, maybe the server is offline. ${error.message}`;
             } else {
-                // Handle Http Error (error.status === 403, 404...)
+                // Handle Http Error (error.status === 403, ...)
                 errorMessage = `Error status : ${error.statusText}(${error.status})`;
             }
         }
-        console.error('It happens: ', errorMessage);
+        console.error('Error: ', errorMessage);
         
         this.keepAfterRouteChange = keepAfterRouteChange;
         this.subject.next({ type: 'error', text: errorMessage });

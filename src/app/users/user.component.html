@@ -17,3 +17,140 @@
         </ng-container>
     </mat-autocomplete>
 </form>
+
+<div *ngIf="selectedUser" class="example-full-width">
+    <div>
+        <mat-form-field class="fields-small">
+            <input matInput disabled=true placeholder="domNo" value="{{selectedUser.domNo}}">
+        </mat-form-field>
+        <mat-form-field class="fields-small">
+            <input matInput disabled=true placeholder="groupNo" value="{{selectedUser.groupNo}}">
+        </mat-form-field>
+        <mat-form-field class="fields-small">
+            <input matInput disabled=true placeholder="licence" value="{{selectedUser.licence}}">
+        </mat-form-field>
+    </div>
+    <mat-form-field class="fields">
+        <input matInput placeholder="firstName" value="{{selectedUser.firstName}}">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput placeholder="lastName" value="{{selectedUser.lastName}}">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput placeholder="login" value="{{selectedUser.login}}">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput disabled=true placeholder="lastLogin" value="{{selectedUser.lastLogin | date:'y MMM dd'}}">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput disabled=true placeholder="creationDate" value="{{selectedUser.creationDate | date}}">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput disabled=true placeholder="userLastUpdate" value="{{selectedUser.userLastUpdate | date}}">
+    </mat-form-field>
+    <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.acountLocked">acount Locked
+    </mat-checkbox>
+    <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.isActive">is Active
+    </mat-checkbox>
+
+    <mat-form-field class="fields">
+        <input matInput placeholder="billRequestLocation" value="{{selectedUser.billRequestLocation}}">
+    </mat-form-field>
+
+    <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.showBilling">show Billing
+    </mat-checkbox>
+    <mat-form-field class="fields">
+        <input matInput placeholder="mailName" value="{{selectedUser.mailName}}">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput placeholder="mailPassword" value="{{selectedUser.mailPassword}}">
+    </mat-form-field>
+
+    <mat-form-field class="fields">
+        <input matInput placeholder="email" value="{{selectedUser.email}}">
+    </mat-form-field>
+    <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.defautKeyboardMode">defaut Keyboard Mode
+    </mat-checkbox>
+    <mat-form-field class="fields">
+        <input matInput placeholder="licenceType" value="{{selectedUser.licenceType}}">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput placeholder="activationDate" value="{{selectedUser.activationDate}}">
+    </mat-form-field>
+    <mat-form-field class="fields">
+        <input matInput placeholder="activationDate" value="{{selectedUser.activationDate}}">
+    </mat-form-field>
+    <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.resetPassword">reset Password
+    </mat-checkbox>
+    <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.isService">is Service
+    </mat-checkbox>
+    <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.meddialogActive">meddialog Active
+    </mat-checkbox>
+    <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.defautKeyboardMode">defaut Keyboard Mode
+    </mat-checkbox>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>SYRA</mat-panel-title>
+            </mat-expansion-panel-header>
+<!-- todo -->
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Fact.Net(pré Syra)</mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- Grille de facturation -->
+            <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.sendToFacturaitonNet">send To FacturaitonNet
+            </mat-checkbox>
+            <br>
+            <mat-form-field class="fields">
+                <input matInput placeholder="factNetGroup" value="{{selectedUser.factNetGroup}}">
+            </mat-form-field>
+            <mat-form-field class="fields">
+                <input matInput placeholder="factNetUsr" value="{{selectedUser.factNetUsr}}">
+            </mat-form-field>
+            <mat-form-field class="fields">
+                <input matInput placeholder="factNetPsw" value="{{selectedUser.factNetPsw}}">
+            </mat-form-field>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Labos</mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- recieve LabMail -->
+            <mat-form-field class="fields">
+                <input matInput placeholder="fowardMail" value="{{selectedUser.fowardMail}}">
+            </mat-form-field>
+            <mat-form-field class="fields">
+                <input matInput placeholder="otherLabMail" value="{{selectedUser.otherLabMail}}">
+            </mat-form-field>
+            <!-- Manage patient without file -->
+            <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.receiveAnormalLabMail">receive Anormal LabMail
+            </mat-checkbox>
+            <mat-form-field class="fields">
+                <input matInput placeholder="anormalLabMail" value="{{selectedUser.anormalLabMail}}">
+            </mat-form-field>
+            <!-- patient lab mail recal -->
+            <mat-form-field class="fields">
+                <input matInput placeholder="mailDomain" value="{{selectedUser.mailDomain}}">
+            </mat-form-field>
+            <mat-form-field class="fields">
+                <input matInput placeholder="userLabId" value="{{selectedUser.userLabId}}">
+            </mat-form-field>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>RAMQ</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-checkbox class="fields" color="primary" [(ngModel)]="selectedUser.ramqSync">ramq Sync
+            </mat-checkbox>
+            <br>
+            <mat-form-field class="fields">
+                <input matInput placeholder="ramqType" value="{{selectedUser.ramqType}}">
+            </mat-form-field>
+            <mat-form-field class="fields">
+                <input matInput placeholder="ramqUser" value="{{selectedUser.ramqUser}}">
+            </mat-form-field>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

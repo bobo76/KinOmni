@@ -119,4 +119,52 @@ export interface UserSearchDto{
     creationDate: Date;
     mailName: string;
     licence: string;
+    domNo: number;
+}
+
+export interface UserDto {
+    useNo: string;
+    groupNo: number;
+    firstName: string;
+    lastName: string;
+    login: string;
+    creationDate: Date;
+    userLastUpdate: Date;
+    rxNo: number;
+    lastLogin: Date;
+    acountLocked: boolean;
+    isActive: boolean;
+    activateInterraction: boolean;
+    licence: string;
+    sendToFacturaitonNet: boolean;
+    factNetUsr: string;
+    factNetPsw: string;
+    factNetGroup: string;
+    billRequestLocation: string;
+    ramqUser: string;
+    ramqType: string;
+    ramqSync: boolean;
+    showBilling: boolean;
+    mailName: string;
+    mailPassword: string;
+    mailDomain: number | null;
+    receiveLabMail: number;
+    fowardMail: string;
+    partialLabMailRecall: number | null;
+    anormalLabMail: string;
+    otherLabMail: string;
+    userLabId: string;
+    email: string;
+    receiveAnormalLabMail: boolean;
+    managePatientWithoutFile: boolean;
+    defautKeyboardMode: boolean;
+    licenceType: number;
+    activationDate: Date | null;
+    resetPassword: boolean;
+    isService: boolean;
+    meddialogActive: boolean;
+    domNo: number;
+    deletedDate: Date | null;
+    deletedByUseNo: string;
+    deletedBy: UserSearchDto;
 }

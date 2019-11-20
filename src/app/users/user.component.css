@@ -1,4 +1,25 @@
 
+.fields {
+  padding: 0px 3px 0px 3px;
+  width: 32%;
+  min-width: 175px;
+}
+.fields-small {
+  padding: 0px 3px 0px 3px;
+  min-width: 75px;
+  width: 12%;
+}
+.fields-large {
+  padding: 0px 3px 0px 3px;
+  width: 50%;
+}
+.button-top {
+  margin: 5px 3px 15px 3px;
+}
+.button-bot {
+  margin: 20px 3px 3px 3px;
+}
+
 .example-full-width {
   width: 96%;
   padding: 10px;

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError, BehaviorSubject } from "rxjs";
 import { map, catchError } from "rxjs/operators";
-import { UnitDto, DomainSearchDto, UnitDomain, UnitSearchDto, DomainDto, User, unitTableDto, DomainGroupDto, ActivationParametersDto, ActivationDto, UserSearchDto } from "../model/model";
+import { UnitDto, DomainSearchDto, UnitDomain, UnitSearchDto, DomainDto, User, unitTableDto, DomainGroupDto, ActivationParametersDto, ActivationDto, UserSearchDto, UserDto } from "../model/model";
 import { environment } from 'environments/environment';
 @Injectable({
     providedIn: "root"
@@ -75,6 +75,9 @@ export class DataService {
     }
     searchUser(filter: string): Observable<UserSearchDto[]> {
         return this.http.get<UserSearchDto[]>(`${environment.apiUrl}/api/user?filter=${filter}`);
+    }
+    getUser(id: string, domNo: number): Observable<UserDto> {
+        return this.http.get<UserDto>(`${environment.apiUrl}/api/user/${id}?domNo=${domNo}`);
     }
     private handleError(error: HttpErrorResponse): Observable<any> {
         let errorMessage = '';
