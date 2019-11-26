@@ -161,10 +161,26 @@ export interface UserDto {
     licenceType: number;
     activationDate: Date | null;
     resetPassword: boolean;
-    isService: boolean;
+    // isService: boolean;
     meddialogActive: boolean;
     domNo: number;
     deletedDate: Date | null;
     deletedByUseNo: string;
     deletedBy: UserSearchDto;
+    syraInfo: SyraUserDto;
+}
+export interface SyraUserDto 
+{
+    userName: string;
+    password: string;
+    provider: number;
+    group: number | null;
+    useNo: string;
+    agency: string;
+}
+export class menuItem
+{
+    route: string;
+    icon: string;
+    title: string;
 }

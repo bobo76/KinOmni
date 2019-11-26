@@ -1,16 +1,16 @@
 
 .fields {
-  padding: 0px 3px 0px 3px;
+  padding: 0px 6px 0px 3px;
   width: 32%;
   min-width: 175px;
 }
 .fields-small {
-  padding: 0px 3px 0px 3px;
-  min-width: 75px;
-  width: 12%;
+  padding: 0px 6px 0px 3px;
+  min-width: 100px;
+  width: 16%;
 }
 .fields-large {
-  padding: 0px 3px 0px 3px;
+  padding: 0px 6px 0px 3px;
   width: 50%;
 }
 .button-top {
@@ -29,9 +29,14 @@
 .example-button-row a {
   margin-right: 8px;
 }
-
+mat-checkbox {
+  padding: 0px 15px 0px 0px;
+}
 span {
   float: left;
   padding: 1px;
   /* background-color:white; */
+}
+mat-checkbox {
+  margin: 0px 12px;
 }
