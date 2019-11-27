@@ -3,13 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MaterialModule } from "../material-module";
-import {
-  MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatTabsModule,
-  MatCheckboxModule, MatSelectModule, MatFormFieldModule, MatDatepickerModule,
-  MatNativeDateModule, MatExpansionModule, MatSidenavModule
-} from "@angular/material";
+import { MaterialModule } from "@app/app-material-module";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
@@ -51,30 +45,13 @@ import { DomainSearchComponent } from "./domain/domain-search.component";
     DomainSearchComponent,
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MaterialModule,
     FormsModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatExpansionModule,
-    MatSidenavModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatInputModule,
-    MatDialogModule,
-    MatTableModule,
-    MatMenuModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatTabsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
