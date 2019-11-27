@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { UnitDomain } from "../model/model";
 import { Observable } from "rxjs";
-import { DataService } from '../_services/data-service.service';
+import { DataService } from "../_services/data-service.service";
 
 @Component({
   selector: "app-unit-domain",

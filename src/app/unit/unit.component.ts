@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { UnitDto, UnitSearchDto } from "../model/model";
 import { Observable } from "rxjs";
 import { debounceTime, filter, tap, switchMap, finalize, flatMap } from "rxjs/operators";
-import { DataService } from '../_services/data-service.service';
-import { AlertService } from '../_services/alert.service.service';
+import { DataService } from "../_services/data-service.service";
+import { AlertService } from "../_services/alert.service.service";
 
 @Component({
   selector: "app-unit",
@@ -20,7 +20,7 @@ export class UnitComponent implements OnInit {
   isLoading: boolean;
 
   constructor(private data: DataService,
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private alertService: AlertService) { }
 
   ngOnInit():void {
@@ -29,7 +29,7 @@ export class UnitComponent implements OnInit {
     });
 
     this.unitsForm
-      .get('unitInput')
+      .get("unitInput")
       .valueChanges
       .pipe(
         debounceTime(400),
@@ -49,7 +49,7 @@ export class UnitComponent implements OnInit {
         });
   }
 
-  displayFn(unit: UnitSearchDto) {
+  displayFn(unit: UnitSearchDto): string {
     if (unit) {
       return unit.description;
     }

@@ -1,26 +1,26 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
-import { DomainSearchDto, DomainDto } from "../model/model";
+import { DomainSearchDto, IDomainDto } from "../model/model";
 import { Observable } from "rxjs";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { debounceTime, filter, tap, switchMap, finalize } from "rxjs/operators";
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { DataService } from '../_services/data-service.service';
-import { AlertService } from '../_services/alert.service.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { DataService } from "../_services/data-service.service";
+import { AlertService } from "../_services/alert.service.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'app-domain-search',
-  templateUrl: './domain-search.component.html',
-  styleUrls: ['./domain-search.component.scss']
+  selector: "app-domain-search",
+  templateUrl: "./domain-search.component.html",
+  styleUrls: ["./domain-search.component.scss"]
 })
 export class DomainSearchComponent implements OnInit {
   @Output()
-  domainSelectedEvent = new EventEmitter<DomainDto>();
+  domainSelectedEvent = new EventEmitter<IDomainDto>();
   @Input()
-  selectedDomain: DomainDto;
+  selectedDomain: IDomainDto;
 
   dataSource: DomainSearchDto[] = [];
-  selectedDomain$: Observable<DomainDto>;
+  selectedDomain$: Observable<IDomainDto>;
   domainsForm: FormGroup;
   isLoading: boolean;
 
@@ -34,7 +34,7 @@ export class DomainSearchComponent implements OnInit {
       domainInput: null
     });
     this.domainsForm
-      .get('domainInput')
+      .get("domainInput")
       .valueChanges
       .pipe(
         debounceTime(400),
@@ -55,7 +55,7 @@ export class DomainSearchComponent implements OnInit {
       );
   }
 
-  displayFn(domain: DomainSearchDto) {
+  displayFn(domain: DomainSearchDto): string {
     if (domain) {
       return domain.domName;
     }
@@ -71,7 +71,7 @@ export class DomainSearchComponent implements OnInit {
           this.domainSelectedEvent.emit(selected);
         },
         error => {
-          const erMsg = error as HttpErrorResponse;
+          const erMsg: HttpErrorResponse = error as HttpErrorResponse;
           this.alertService.error(erMsg.error.message);
         }
       );

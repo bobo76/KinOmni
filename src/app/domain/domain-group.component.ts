@@ -1,23 +1,21 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DomainGroupDto } from '../model/model';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { IDomainGroupDto } from "../model/model";
 
 @Component({
-  selector: 'app-domain-group',
-  templateUrl: './domain-group.component.html',
-  styleUrls: ['./domain-group.component.scss']
+  selector: "app-domain-group",
+  templateUrl: "./domain-group.component.html",
+  styleUrls: ["./domain-group.component.scss"]
 })
-export class DomainGroupComponent implements OnInit {
+export class DomainGroupComponent {
   @Input()
-  selectedDomainGroup: DomainGroupDto;
+  selectedDomainGroup: IDomainGroupDto;
   @Output()
-  saveEvent = new EventEmitter<DomainGroupDto>();
+  saveEvent = new EventEmitter<IDomainGroupDto>();
   @Output()
   undoEvent = new EventEmitter<void>();
 
   constructor() { }
 
-  ngOnInit() {
-  }
   get ramqSyncDate(): Date {
     return this.selectedDomainGroup.ramqSyncDate;
   }

@@ -1,9 +1,9 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Router, NavigationStart } from "@angular/router";
+import { Observable, Subject } from "rxjs";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class AlertService {
     private subject = new Subject<any>();
     private keepAfterRouteChange = false;
@@ -27,22 +27,22 @@ export class AlertService {
         return this.subject.asObservable();
     }
 
-    success(message: string, keepAfterRouteChange = false) {
+    success(message: string, keepAfterRouteChange: boolean = false) {
         this.keepAfterRouteChange = keepAfterRouteChange;
-        this.subject.next({ type: 'success', text: message });
+        this.subject.next({ type: "success", text: message });
     }
-    httpError(error: Error | ErrorEvent | HttpErrorResponse, keepAfterRouteChange = false) {
-        let errorMessage = '';
+    httpError(error: Error | ErrorEvent | HttpErrorResponse, keepAfterRouteChange: boolean = false): void {
+        let errorMessage: string = "";
         if (error instanceof Error) {
             // client-side error
             errorMessage = `Error: ${error.message}`;
         } else if (error instanceof ErrorEvent) {
             errorMessage = `Error: ${error.message}`;
         } else if (error instanceof HttpErrorResponse) {
-            // Server or connection error happened
+            // server or connection error happened
             if (!navigator.onLine) {
-                // Handle offline error
-                errorMessage = 'Server is offline';
+                // handle offline error
+                errorMessage = "Server is offline";
             } else if (error.status === 400) {
                 errorMessage = `The login is invalid.`;
             } else if (error.status === 401) {
@@ -52,21 +52,21 @@ export class AlertService {
             } else if (error.status === 0) {
                 errorMessage = `Error status = 0, maybe the server is offline. ${error.message}`;
             } else {
-                // Handle Http Error (error.status === 403, ...)
+                // handle Http Error (error.status === 403, ...)
                 errorMessage = `Error status : ${error.statusText}(${error.status})`;
             }
         }
-        console.error('Error: ', errorMessage);
-        
+        console.error("Error: ", errorMessage);
+
         this.keepAfterRouteChange = keepAfterRouteChange;
-        this.subject.next({ type: 'error', text: errorMessage });
+        this.subject.next({ type: "error", text: errorMessage });
     }
-    error(message: string, keepAfterRouteChange = false) {
+    error(message: string, keepAfterRouteChange: boolean = false): void {
         this.keepAfterRouteChange = keepAfterRouteChange;
-        this.subject.next({ type: 'error', text: message });
+        this.subject.next({ type: "error", text: message });
     }
 
-    clear() {
+    clear(): void {
         // clear by calling subject.next() without parameters
         this.subject.next();
     }
