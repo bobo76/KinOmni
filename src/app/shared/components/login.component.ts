@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
-import { DataService } from 'app/_services/data-service.service';
-import { AlertService } from 'app/_services/alert.service.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { first } from "rxjs/operators";
+import { DataService } from "app/_services/data-service.service";
+import { AlertService } from "app/_services/alert.service.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
   returnUrl: string;
-  error = '';
+  error = "";
   loading = false;
 
   constructor(
@@ -22,19 +22,19 @@ export class LoginComponent implements OnInit {
       private router: Router,
       private authenticationService: DataService,
       private alertService: AlertService
-  ) { 
+  ) {
       // redirect to home if already logged in
-      if (this.authenticationService.currentUserValue) { 
-          //this.router.navigate(['/']);
+      if (this.authenticationService.currentUserValue) {
+          // this.router.navigate(['/']);
       }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.loading = true;
     this.alertService.clear();
     this.authenticationService.login(this.username, this.password)
@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.loading = false;
-          const erMsg = error as HttpErrorResponse;
+          const erMsg: HttpErrorResponse = error as HttpErrorResponse;
           this.alertService.httpError(erMsg);
         });
   }
-  logout() {
+  logout(): void {
     this.alertService.clear();
     this.authenticationService.logout();
   }

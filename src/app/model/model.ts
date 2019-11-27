@@ -46,7 +46,7 @@ export class DomainSearchDto {
     domName: string;
 }
 
-export interface DomainDto {
+export interface IDomainDto {
     domNo: number;
     grpDomNo: number;
     domName: string;
@@ -63,7 +63,7 @@ export interface DomainDto {
     optMessageLog: boolean;
     optSmartBarCode: boolean;
     optionShowMobileEmbedded: boolean;
-    domainGroup: DomainGroupDto;
+    domainGroup: IDomainGroupDto;
     phyAccount: number;
     proAccount: number;
     secAccount: number;
@@ -72,7 +72,7 @@ export interface DomainDto {
     secAccountPartial: number;
 }
 
-export interface DomainGroupDto {
+export interface IDomainGroupDto {
     grpDomNo: number;
     ramqUser: string;
     ramqSyncDate: Date;
@@ -88,7 +88,7 @@ export class User {
     token?: string;
 }
 
-export interface unitTableDto {
+export interface IUnitTableDto {
     id: number;
     deploymentDate: Date;
     vagueID: string;
@@ -102,7 +102,7 @@ export class ActivationParametersDto {
     vagueId: string;
 }
 
-export interface ActivationDto{
+export interface IActivationDto {
     activationCode: number;
     unitNo: string;
     DdteCreated: Date;
@@ -110,7 +110,7 @@ export interface ActivationDto{
     domainsList: string;
 }
 
-export interface UserSearchDto{
+export interface IUserSearchDto {
     useNo: string;
     groupNo: number;
     firstName: string;
@@ -122,7 +122,7 @@ export interface UserSearchDto{
     domNo: number;
 }
 
-export interface UserDto {
+export interface IUserDto {
     useNo: string;
     groupNo: number;
     firstName: string;
@@ -166,11 +166,10 @@ export interface UserDto {
     domNo: number;
     deletedDate: Date | null;
     deletedByUseNo: string;
-    deletedBy: UserSearchDto;
-    syraInfo: SyraUserDto;
+    deletedBy: IUserSearchDto;
+    syraInfo: ISyraUserDto;
 }
-export interface SyraUserDto 
-{
+export interface ISyraUserDto {
     userName: string;
     password: string;
     provider: number;
@@ -178,8 +177,7 @@ export interface SyraUserDto
     useNo: string;
     agency: string;
 }
-export class menuItem
-{
+export class MenuItem {
     route: string;
     icon: string;
     title: string;

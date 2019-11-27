@@ -1,37 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivationParametersDto, unitTableDto, DomainDto, ActivationDto } from '@app/model';
-import { Observable } from 'rxjs';
-import { DataService, AlertService } from '@app/_services';
-import { ErrorStateMatcher } from '@angular/material';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { ActivationParametersDto, IUnitTableDto, IDomainDto, IActivationDto } from "@app/model";
+import { Observable } from "rxjs";
+import { DataService, AlertService } from "@app/_services";
+import { ErrorStateMatcher } from "@angular/material";
+import { FormControl, FormGroupDirective, NgForm, Validators } from "@angular/forms";
 
 @Component({
-  selector: 'app-activation',
-  templateUrl: './activation.component.html',
-  styleUrls: ['./activation.component.css']
+  selector: "app-activation",
+  templateUrl: "./activation.component.html",
+  styleUrls: ["./activation.component.css"]
 })
 export class Activation implements OnInit {
   activation: ActivationParametersDto;
-  selectedDomain: DomainDto;
-  selectedDomainList: DomainDto[] = [];
+  selectedDomain: IDomainDto;
+  selectedDomainList: IDomainDto[] = [];
 
-  waveList$: Observable<unitTableDto[]>;
+  waveList$: Observable<IUnitTableDto[]>;
   isLoading: boolean;
-  
-  quantityFormControl = new FormControl('', [
+
+  quantityFormControl = new FormControl("", [
     Validators.required,
   ]);
-  grpupFormControl = new FormControl('', [
+  grpupFormControl = new FormControl("", [
     Validators.required,
   ]);
-  activationResult: ActivationDto[];
+  activationResult: IActivationDto[];
 
   matcher = new MyErrorStateMatcher();
   constructor(private data: DataService,
     private alertService: AlertService
     ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activation = new ActivationParametersDto();
     this.isLoading = true;
     this.waveList$ = this.data.getWaveList();
@@ -59,17 +59,17 @@ export class Activation implements OnInit {
     this.activationResult = undefined;
   }
 
-  onDomainSelectedEvent(domain: DomainDto): void{
+  onDomainSelectedEvent(domain: IDomainDto): void {
     this.selectedDomain = domain;
   }
 
-  onAddDomain(): void{
-    if (!this.selectedDomain){
+  onAddDomain(): void {
+    if (!this.selectedDomain) {
       return;
     }
-    const domain = this.selectedDomainList.find(item => item.domNo === this.selectedDomain.domNo);
+    const domain: IDomainDto = this.selectedDomainList.find(item => item.domNo === this.selectedDomain.domNo);
     // const index: number = this.selectedDomainList.indexOf(this.selectedDomain);
-    if (!domain){
+    if (!domain) {
       this.selectedDomainList.push(this.selectedDomain);
     }
   }
@@ -77,9 +77,10 @@ export class Activation implements OnInit {
     this.selectedDomainList.splice(i, 1);
   }
   canGenerateCode(): boolean {
-    if (!this.activation || !this.activation.group)
+    if (!this.activation || !this.activation.group) {
       return true;
-    return !(this.activation.quantity > 0 && this.activation.group.length > 3 && 
+    }
+    return !(this.activation.quantity > 0 && this.activation.group.length > 3 &&
       this.activation.vagueId && this.selectedDomainList.length > 0);
   }
 }
@@ -87,7 +88,7 @@ export class Activation implements OnInit {
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
+    const isSubmitted: boolean = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }

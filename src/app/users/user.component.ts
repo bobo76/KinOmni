@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { UserSearchDto, UserDto } from '@app/model';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Observable, throwError } from 'rxjs';
-import { DataService, AlertService } from '@app/_services';
-import { debounceTime, filter, tap, switchMap, finalize, catchError } from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { IUserSearchDto, IUserDto } from "@app/model";
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { Observable } from "rxjs";
+import { DataService, AlertService } from "@app/_services";
+import { debounceTime, filter, tap, switchMap, finalize } from "rxjs/operators";
+import { MatAutocompleteSelectedEvent } from "@angular/material";
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: "app-user",
+  templateUrl: "./user.component.html",
+  styleUrls: ["./user.component.css"]
 })
 export class UserComponent implements OnInit {
-  dataSource: UserSearchDto[] = [];
-  selectedUser$: Observable<UserDto>;
-  selectedUser: UserDto;
+  dataSource: IUserSearchDto[] = [];
+  selectedUser$: Observable<IUserDto>;
+  selectedUser: IUserDto;
   userForm: FormGroup;
   isLoading: boolean;
 
@@ -29,7 +28,7 @@ export class UserComponent implements OnInit {
     });
 
     this.userForm
-      .get('userInput')
+      .get("userInput")
       .valueChanges
       .pipe(
         debounceTime(400),
@@ -55,14 +54,13 @@ export class UserComponent implements OnInit {
           console.log("Search user complete");
         });
   }
-  
-  displayFn(user: UserSearchDto) {
+  displayFn(user: IUserSearchDto): string {
     if (user) {
-      return user.firstName + ' ' + user.lastName;
+      return user.firstName + " " + user.lastName;
     }
   }
   valueChanged(event: MatAutocompleteSelectedEvent): void {
-    const userSelected: UserSearchDto = event.option.value;
+    const userSelected: IUserSearchDto = event.option.value;
     if (userSelected) {
       this.selectedUser$ = this.data.getUser(userSelected.useNo, userSelected.domNo);
       this.selectedUser$.subscribe(selected => this.selectedUser = selected,

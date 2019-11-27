@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { DomainDto, DomainGroupDto } from "../model/model";
+import { Component } from "@angular/core";
+import { IDomainDto, IDomainGroupDto } from "../model/model";
 import { Observable } from "rxjs";
-import { DataService } from '../_services/data-service.service';
-import { AlertService } from '../_services/alert.service.service';
+import { DataService } from "../_services/data-service.service";
+import { AlertService } from "../_services/alert.service.service";
 
 @Component({
   selector: "app-domain",
@@ -10,19 +10,15 @@ import { AlertService } from '../_services/alert.service.service';
   styleUrls: ["./domain.component.css"]
 })
 
-export class DomainComponent implements OnInit {
-  selectedDomain$: Observable<DomainDto>;
-  selectedDomain: DomainDto;
+export class DomainComponent {
+  selectedDomain$: Observable<IDomainDto>;
+  selectedDomain: IDomainDto;
 
   constructor(private data: DataService,
     private alertService: AlertService)
     { }
 
-  ngOnInit(): void {
-
-  }
-
-  onSaveDomainClick(domain: DomainDto): void {
+  onSaveDomainClick(domain: IDomainDto): void {
     this.data.saveDomain(domain)
       .subscribe(result => {
         console.log("Save result : " + result);
@@ -31,7 +27,7 @@ export class DomainComponent implements OnInit {
         this.alertService.httpError(error);
       });
   }
-  onSaveDomainGroupClick(domainGroup: DomainGroupDto): void {
+  onSaveDomainGroupClick(domainGroup: IDomainGroupDto): void {
     this.data.saveDomainGroup(domainGroup)
       .subscribe(result => {
         console.log("Save result : " + result);
@@ -47,7 +43,7 @@ export class DomainComponent implements OnInit {
         this.alertService.httpError(error);
       });
   }
-  onDomainSelectedEvent(domain: DomainDto): void {
+  onDomainSelectedEvent(domain: IDomainDto): void {
     this.selectedDomain = domain;
   }
 }

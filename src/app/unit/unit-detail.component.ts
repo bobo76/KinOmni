@@ -1,9 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
-import { UnitDto, unitTableDto } from "../model/model";
-import { Observable } from 'rxjs';
-import { DataService } from '@app/_services/data-service.service';
-import { finalize } from 'rxjs/operators';
-import { AlertService } from '@app/_services';
+import { UnitDto, IUnitTableDto } from "../model/model";
+import { Observable } from "rxjs";
+import { DataService } from "@app/_services/data-service.service";
+import { AlertService } from "@app/_services";
 
 @Component({
   selector: "app-unit-detail",
@@ -18,7 +17,7 @@ export class UnitDetailComponent implements OnInit {
   @Output()
   undoEvent = new EventEmitter<void>();
 
-  waveList$: Observable<unitTableDto[]>;
+  waveList$: Observable<IUnitTableDto[]>;
   isLoading: boolean;
 
   constructor(private data: DataService,

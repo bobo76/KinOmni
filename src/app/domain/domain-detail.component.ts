@@ -1,23 +1,21 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DomainDto } from '../model/model';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { IDomainDto } from "../model/model";
 
 @Component({
-  selector: 'app-domain-detail',
-  templateUrl: './domain-detail.component.html',
-  styleUrls: ['./domain-detail.component.scss']
+  selector: "app-domain-detail",
+  templateUrl: "./domain-detail.component.html",
+  styleUrls: ["./domain-detail.component.scss"]
 })
-export class DomainDetailComponent implements OnInit {
+export class DomainDetailComponent {
   @Input()
-  selectedDomain: DomainDto;
+  selectedDomain: IDomainDto;
   @Output()
-  saveEvent = new EventEmitter<DomainDto>();
+  saveEvent = new EventEmitter<IDomainDto>();
   @Output()
   undoEvent = new EventEmitter<void>();
-  
+
   constructor() { }
 
-  ngOnInit() {
-  }
   saveDomain(): void {
     this.saveEvent.emit(this.selectedDomain);
   }

@@ -6,7 +6,7 @@ import { UnitComponent } from "./unit/unit.component";
 import { UserComponent } from "./users/user.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { LoginComponent } from './shared/components/login.component';
+import { LoginComponent } from "./shared/components/login.component";
 
 const routes: Routes = [
   { path: "", component: Informations },
