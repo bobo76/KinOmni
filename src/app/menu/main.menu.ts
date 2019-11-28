@@ -12,7 +12,7 @@ import { MenuItem } from "@app/model";
 export class MainMenu {
     options: FormGroup;
     meniList: MenuItem[] = [
-        { icon: "lock", route: "activation", title:"Activation" },
+        { icon: "add_to_queue", route: "activation", title:"Activation" },
         { icon: "account_box", route: "user", title:"Users" },
         { icon: "computer", route: "unit", title: "Unit" },
         { icon: "location_city", route: "domain", title: "Domain" },
