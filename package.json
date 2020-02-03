@@ -1,6 +1,11 @@
 {
   "name": "kin-omni-web",
-  "version": "0.0.0",
+  "displayName": "KinOmni",
+  "version": "0.7.0",
+  "description": "App to manage users, units and domains",
+  "main": "index.js",
+  "author": "Kinpad.KinOmni.Team",
+  "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
