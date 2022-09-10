@@ -7,8 +7,16 @@ import { IDomainDto } from "../model/model";
   styleUrls: ["./domain-detail.component.scss"]
 })
 export class DomainDetailComponent {
-  @Input()
-  selectedDomain: IDomainDto;
+  _selectedDomain: IDomainDto;
+  _selectedDomainCopy: IDomainDto;
+
+   @Input()
+   set selectedDomain(dom: IDomainDto) {
+     this._selectedDomain = dom;
+     this._selectedDomainCopy = JSON.parse(JSON.stringify(dom));
+  }
+  get selectedDomain(): IDomainDto { return this._selectedDomain; }
+  
   @Output()
   saveEvent = new EventEmitter<IDomainDto>();
   @Output()

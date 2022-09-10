@@ -20,7 +20,7 @@ import { UnitDetailComponent } from "./unit/unit-detail.component";
 import { UnitDomainComponent } from "./unit/unit-domain.component";
 import { UserComponent } from "./users/user.component";
 
-import { DataService } from "./_services/data-service.service";
+import { DataService } from "./_services/data.service";
 import { JwtInterceptor } from "./_interceptor/jwt.interceptor";
 import { LoginComponent } from "./shared/components/login.component";
 import { AlertComponent } from "./shared/components/alert.component";

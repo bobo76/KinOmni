@@ -4,8 +4,8 @@ import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { UnitDto, UnitSearchDto } from "../model/model";
 import { Observable } from "rxjs";
 import { debounceTime, filter, tap, switchMap, finalize, flatMap } from "rxjs/operators";
-import { DataService } from "../_services/data-service.service";
-import { AlertService } from "../_services/alert.service.service";
+import { DataService } from "../_services/data.service";
+import { AlertService } from "../_services/alert.service";
 
 @Component({
   selector: "app-unit",

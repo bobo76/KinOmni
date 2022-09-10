@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { IDomainDto, IDomainGroupDto } from "../model/model";
 import { Observable } from "rxjs";
-import { DataService } from "../_services/data-service.service";
-import { AlertService } from "../_services/alert.service.service";
+import { DataService } from "../_services/data.service";
+import { AlertService } from "../_services/alert.service";
 
 @Component({
   selector: "app-domain",

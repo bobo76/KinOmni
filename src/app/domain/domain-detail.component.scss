@@ -9,7 +9,7 @@
   width: 12%;
 }
 .fields-numeric {
-  padding: 0px 6px 0px 6px;
+  padding: 0px 10px 0px 6px;
   min-width: 70px;
   width: 22%;
 }
@@ -28,5 +28,10 @@ mat-card {
   max-width: 450px;
 }
 label {
-  min-width: 120px;
+  display: inline-block;
+  width: 110px;
+}
+.diff-count {
+  display: inline-block;
+  width: 35px;
 }

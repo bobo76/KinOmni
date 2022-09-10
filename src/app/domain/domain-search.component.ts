@@ -4,8 +4,8 @@ import { Observable } from "rxjs";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { debounceTime, filter, tap, switchMap, finalize } from "rxjs/operators";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { DataService } from "../_services/data-service.service";
-import { AlertService } from "../_services/alert.service.service";
+import { DataService } from "../_services/data.service";
+import { AlertService } from "../_services/alert.service";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({

@@ -58,11 +58,14 @@
 <label>Licence</label>
 <mat-card>
     <div>
-        <label>Médecin</label>
+        <label class="licence-label">Médecin</label>
         <mat-form-field class="fields-numeric">
             <input matInput placeholder="Régulier" [(ngModel)]="selectedDomain.phyAccount" 
             type="number" min="0" max="2000" >
         </mat-form-field>
+        <span *ngIf="selectedDomain.phyAccount !== _selectedDomainCopy.phyAccount">
+            <label class="diff-count">{{selectedDomain.phyAccount - _selectedDomainCopy.phyAccount}}</label>
+        </span>
         <mat-form-field class="fields-numeric">
             <input matInput placeholder="Etp" [(ngModel)]="selectedDomain.phyAccountPartial" 
             type="number" min="0" max="2000" >  <!-- TODO validate 200  -->

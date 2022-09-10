@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { UnitDto, IUnitTableDto } from "../model/model";
 import { Observable } from "rxjs";
-import { DataService } from "@app/_services/data-service.service";
+import { DataService } from "@app/_services/data.service";
 import { AlertService } from "@app/_services";
 
 @Component({
