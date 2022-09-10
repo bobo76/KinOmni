@@ -20,5 +20,10 @@ export class UnitDomainComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.unitDomain$ = this.data.getUnitDomainList(this.unitId);
   }
-
+  // tslint:disable-next-line:no-empty
+  saveUnit(): void {
+  }
+  // tslint:disable-next-line:no-empty
+  undoChanges(): void {
+  }
 }

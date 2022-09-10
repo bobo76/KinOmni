@@ -7,7 +7,7 @@ import { InformationsDto } from "../model/model";
   styleUrls: ["./informations.component.css"]
 })
 export class Informations {
-  private informations: InformationsDto;
+  informations: InformationsDto;
   constructor() {
     this.informations = new InformationsDto();
     this.informations.environement = "test";
