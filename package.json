@@ -27,6 +27,7 @@
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
     "bootstrap": "^4.3.1",
+    "caniuse-lite": "^1.0.30001393",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.6.7",
     "tslib": "^1.10.0",
